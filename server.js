@@ -9,11 +9,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Mount routes
+// Import routes
 const contactRoutes = require("./routes/contactRoutes");
-app.use("/api", contactRoutes);  // ✅ so full route is /api/contact
+
+// Mount routes
 app.use("/api", contactRoutes);
-console.log("✅ Contact routes mounted at /api/contact");
+app.get("/", (req, res) => {
+  res.send("Backend is running!");
+});
 
 
 const PORT = process.env.PORT || 5000;
